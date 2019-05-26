@@ -4,19 +4,17 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const path = require('path');
+const cors = require('cors');
 dotenv.config();
-mongoose.connect(process.env.mongodburi, {useNewUrlParser: true});
+
 const app = express();
+mongoose.connect(process.env.mongodburi, {useNewUrlParser: true});
 
 const brewBatchRoute = require("./Routes/BrewBatchRoute");
 const fermenterRoute = require("./Routes/FermenterRoute");
 
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, 'Public')));
 app.get('/*', function (req, res) {
