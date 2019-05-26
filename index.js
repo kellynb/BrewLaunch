@@ -17,6 +17,9 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(bodyParser.json());
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname,'index.html'));
+});
 app.use(brewBatchRoute);
 app.use(fermenterRoute);
 
