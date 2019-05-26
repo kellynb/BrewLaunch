@@ -17,7 +17,7 @@ const fermenterRoute = require("./Routes/FermenterRoute");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, 'Public')));
-app.get('/*', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'Public','index.html'));
 });
 app.use(brewBatchRoute);
