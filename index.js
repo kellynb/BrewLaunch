@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const path = require('path');
 dotenv.config();
 mongoose.connect(process.env.mongodburi, {useNewUrlParser: true});
 const app = express();
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(bodyParser.json());
+app.use(express.static(path.resolve(__dirname, 'Public')));
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'Public','index.html'));
 });
