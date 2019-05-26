@@ -1,5 +1,7 @@
 {
-    "routes": {
+  "root": "Public/",
+  "clean_urls": false,
+  "routes": {
       "/**": "index.html"
-    }
   }
+}
